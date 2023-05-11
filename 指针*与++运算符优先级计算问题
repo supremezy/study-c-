@@ -1,0 +1,19 @@
+# include <iostream>
+# include <string>
+
+int main(){
+    using namespace std;
+   double a[5]={21,32,23,45,37};
+   double x,y,z,s;
+   double *pt=a;
+   ++pt;
+   x=*++pt;
+   y=++*pt;
+   z=(*pt)++;
+   s=*pt++;
+   cout << x << endl;
+   cout << y << endl;
+   cout << z << endl;
+   cout << s << endl;
+    return 0;
+}
