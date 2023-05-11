@@ -1,0 +1,18 @@
+# include <iostream>
+# include <string>
+
+int main(){
+   using namespace std;
+   string word;
+   cout << "Enter a word: ";
+   cin >> word;
+   char temp;
+   int i,j;
+   for (i=word.size()-1,j=0;j<i;i--,j++){
+    temp=word[i];
+    word[i]=word[j];
+    word[j]=temp;
+   }
+   cout << word;
+return 0;
+}
