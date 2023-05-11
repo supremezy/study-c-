@@ -3,7 +3,7 @@ const int a=16;
 
 int main(){
     using namespace std;
-    double f[a];
+    int f[a];
     f[0]=f[1]=1;
     for (int i=2;i<a;i++){
         f[i]=i*f[i-1];
