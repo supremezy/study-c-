@@ -1,0 +1,32 @@
+# include <iostream>
+const int Cities=5;
+const int Years=4;
+
+int main(){
+   using namespace std;
+   char *cities[Cities]=
+   {
+    "aaa",
+    "bbb",
+    "ccc",
+    "ddd",
+    "eee"
+   };
+
+   int t[Years][Cities]=
+   {
+    {96,100,99,98,96},
+    {97,95,99,98,88},
+    {96,100,99,93,96},
+    {94,98,99,95,96}
+   };
+   cout << "temperatures are \n";
+   for (int i=0;i<Cities;i++){
+    cout << cities[i] << ":\t";
+    for (int j=0;j<Years;j++){
+        cout << t[j][i] << "\t";
+    }
+    cout << endl;
+   }
+return 0;
+}
