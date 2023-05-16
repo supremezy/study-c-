@@ -1,0 +1,110 @@
+//将构造函数和析构函数加入到原来的类声明中，并删除了acquire()函数
+stock10.h文件：
+// stock00.h -- Stock class interface 
+# ifndef STOCK10_H 
+#define STOCK10_H 
+#include <string> 
+class Stock // class declaration 
+{
+private:
+    std:: string company;
+    long shares; 
+    double share_val; 
+    double total_val; 
+    void set_tot() { total_val = shares * share_val; }
+public:
+//two constructors
+    Stock(); // default constructor 
+    Stock(const std::string & co, long n = 0, double pr = 0.0);
+    ~Stock(); // noisy destructor 
+    void buy(long num, double price); 
+    void sell(long num, double price); 
+    void update(double price); 
+    void show(); 
+};
+#endif
+
+stock0.cpp文件：
+// stockOO.cpp -- implementing the Stock class 
+//version 00 
+#include <iostream>
+#include "stock10.h"
+Stock :: Stock () {
+    std:: cout<< "Default constructor called\n";
+    company = "no name"; 
+    shares = 0; 
+    share_val = 0.0; 
+    total_val = 0.0; 
+}
+Stock :: Stock(const std::string & co, long n, double pr){
+    std ::cout << "Constructor using "<< co << "called\n";
+    company = co; 
+    if (n < 0){
+        std:: cout << "Number of shares can't be negative;"
+        << company<<" shares set to 0.\n";
+        shares=0;
+    }
+    else shares= n;
+    share_val= pr;
+    set_tot() ; 
+}
+Stock :: ~Stock(){
+    std ::cout << "Bye, " << company << "!\n";
+}
+void Stock::buy(long num, double price){
+    if (num < 0){
+        std::cout << "Number of shares purchase can't be negative."
+        << "Transaction is aborted.\n"; 
+    }
+    else{
+        shares += num; 
+        share_val = price; 
+        set_tot(); 
+    }
+}
+void Stock::sell(long num, double price){
+    using std :: cout; 
+    if (num < 0) {
+        cout << "Number of shares sold can't be negative."
+        << "Transaction is aborted.\n"; 
+    }
+    else if (num > shares){
+        cout << "ou can't sel 1 more than you have!"
+        << "Transaction is aborted.\n";
+    }
+    else{
+        shares -= num; 
+        share_val = price; 
+        set_tot(); 
+    }
+}
+void Stock::update(double price){
+    share_val = price; 
+    set_tot(); 
+}
+void Stock::show(){
+    std::cout <<"Company: " << company
+    <<" Shares: "<< shares << '\n'
+    <<" Share Price: $" << share_val
+    <<" Total Worth: $" << total_val << '\n';
+}
+
+int main(){
+    using std ::cout; 
+    cout << "Using constructors to create new object$\n";
+    Stock stockl("NanoSmart", 12, 20.0); // syntax 1 stockl.show();
+    Stock stock2 = Stock ("Boffo Objects", 2, 2.0); // syntax 2 
+    stock2.show(); 
+
+    cout << "Assigning stockl to stock2:\n";
+    stock2 = stockl; 
+    cout << "Listing stockl and stock2:\n"; 
+    stockl.show() ; 
+    stock2.show(); 
+    cout << "Using a constructor to reset an object\n"; 
+    stockl = Stock ("Nifty Foods", 10, 50.0);
+    cout << "Revised stockl:\n";
+    stockl.show(); 
+    cout << "Done\n"; 
+return 0; 
+}
