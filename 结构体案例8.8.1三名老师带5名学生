@@ -19,7 +19,7 @@ struct Teacher {
 void allocateSpace(struct Teacher tArray[],int len) {
 	string nameSeed = "ABCDE";
 	//给老师赋值
-	for (int i = 0; i < 3; i++) {
+	for (int i = 0; i < len; i++) {
 		tArray[i].tName = "Teacher_";
 		tArray[i].tName += nameSeed[i];
 
