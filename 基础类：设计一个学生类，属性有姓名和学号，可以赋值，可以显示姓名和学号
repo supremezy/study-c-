@@ -7,6 +7,10 @@ using namespace std;
 class Student {
 public: //公共权限
 
+	//类中的属性和行为称为成员
+	//属性又叫成员属性或成员变量
+	//行为又叫成员函数或成员方法
+	
 	//属性:姓名和学号
 	string m_Name;
 	int m_Id;
