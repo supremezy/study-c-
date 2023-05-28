@@ -1,0 +1,46 @@
+# include <iostream>
+using namespace std;
+
+class Person {
+public:
+	Person() {
+		cout << "默认构造函数调用" << endl;
+	}
+
+	Person(int a,int h) {
+		age = a;
+		height = new int(h);//new返回的是该数据类型的指针，创建在堆区
+		cout << "有参函数调用" << endl;
+	}
+
+	//自己实现拷贝构造函数，解决浅拷贝带来的问题
+	Person(const Person &p) {
+		cout << "拷贝构造函数调用" << endl;
+		age = p.age;
+		//height=p.height;编译器默认实现这行代码
+		height = new int(*p.height);
+	}
+
+	//析构将堆区开辟数据做释放操作
+	~Person() {
+		if (height != NULL) {
+			delete height;
+			height = NULL;//防止野指针出现，将其置空
+		}
+		cout << "析构函数调用" << endl;
+	}
+	int age;
+	int* height;//身高，开辟到堆区
+};
+
+void test01() {
+	Person p1(18,160);
+	cout << "p1的年龄：" << p1.age <<" 身高为：" << *p1.height << endl;
+	Person p2(p1);
+	cout << "p2的年龄：" << p2.age << " 身高为：" << *p2.height << endl;
+}
+
+int main() {
+	test01();
+	return 0;
+}
