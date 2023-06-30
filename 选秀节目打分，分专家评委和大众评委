@@ -1,0 +1,26 @@
+# include <iostream>
+using namespace std;
+
+int cal_score(int N,int *Score,int *Judge_type){
+    //初始化两种专家打分分数
+    double sum1=0,sum2=0;
+    //初始化总分和两种评委数
+    int ret=0,n=0,m=0;
+    //第i个评委开始打分
+    for (int i=0;i<N;i++){
+        //先判断评委类型
+        switch(Judge_type[i]){
+            //专家评委
+            case 1:sum1+=Score[i];++n;break;
+            case 2:sum2+=Score[i];++m;break;
+            default:;
+        }
+        //根据评委类型取均值
+        if (n) sum1=int (sum1/n);
+        if (m) sum2=int (sum2/m);
+        //计算总分
+        ret=sum1*0.6+sum2*0.4;
+    }
+    return ret;
+
+}
